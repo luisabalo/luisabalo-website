@@ -1,39 +1,28 @@
 :root{
-  /* Overall site theme */
-  --bg: #0b0e14;
-  --fg: #e7eaf0;
-  --muted: rgba(231,234,240,0.70);
-  --line: rgba(255,255,255,0.14);
+  --fg: #e9ecf3;
+  --muted: rgba(233,236,243,0.70);
+  --line: rgba(255,255,255,0.16);
 
-  /* Accent (subtle, professional) */
-  --accent: #9b7bff;
+  /* restrained accent */
+  --accent: #a58bff;
 
-  /* Layout */
-  --max: 1120px;
-  --pad: 22px;
-  --gap: 22px;
-
-  /* Square edges requested */
-  --radius: 0px;
+  /* page padding (useful on huge screens too) */
+  --pad: 26px;
 
   --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  /* Home background mode:
-     - Set to "slideshow" (default) or "solid"
-     - If solid: set --homeSolid to a color you like (e.g. #000)
+  /* Background images for slideshow:
+     If you only have assets/background.jpg:
+     duplicate it as background-1.jpg, background-2.jpg, background-3.jpg
   */
-  --homeBgMode: slideshow; /* slideshow | solid */
-  --homeSolid: #000000;
+  --bg1: url("assets/background-1.jpg");
+  --bg2: url("assets/background-2.jpg");
+  --bg3: url("assets/background-3.jpg");
 
-  /* Home slideshow images */
-  --bg1: url("assets/background-website-1.jpg");
-  --bg2: url("assets/background-website-2.jpg");
-  --bg3: url("assets/background-website-3.jpg");
-
-  /* Overlay strength on top of photos (higher = darker, easier to read) */
-  --overlayA: 0.62;
-  --overlayB: 0.40;
+  /* overlay strength so you can place text on top */
+  --overlayTop: 0.55;
+  --overlayBottom: 0.78;
 }
 
 *{ box-sizing:border-box; }
@@ -41,70 +30,60 @@ html{ scroll-behavior:smooth; }
 body{
   margin:0;
   font-family:var(--font);
-  background: linear-gradient(180deg, var(--bg), #0f1420);
   color:var(--fg);
+  background:#05070c;
   line-height:1.55;
 }
-
 a{ color:inherit; text-decoration:none; }
 a:hover{ text-decoration:none; }
 
-.wrap{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:0 var(--pad);
-}
-
-/* ===== Topbar (global) ===== */
+/* ===== Topbar ===== */
 .topbar{
   position:sticky;
   top:0;
   z-index:50;
-  background: rgba(11,14,20,0.62);
-  backdrop-filter: blur(12px);
-  border-bottom:1px solid var(--line);
+  background: rgba(6,8,14,0.58);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
 }
 .topbar__inner{
   display:flex;
   align-items:center;
-  gap:16px;
-  padding:14px var(--pad);
-  max-width:var(--max);
-  margin:0 auto;
+  gap:18px;
+  padding: 14px var(--pad);
+  width: 100%;
 }
 .brand{
-  font-weight:700;
-  letter-spacing:0.2px;
-  position:relative;
+  font-weight: 750;
+  letter-spacing: 0.2px;
+  position: relative;
 }
 .brand::after{
   content:"";
   position:absolute;
   left:0;
-  bottom:-6px;
-  width:22px;
+  bottom:-7px;
+  width:24px;
   height:2px;
-  background:var(--accent);
-  opacity:0.95;
+  background: var(--accent);
+  opacity: 0.95;
 }
-
 .nav{
   display:flex;
   gap:14px;
   flex-wrap:wrap;
-  margin-left:10px;
+  margin-left: 10px;
 }
 .nav a{
-  color:rgba(231,234,240,0.72);
-  font-size:0.95rem;
-  padding:8px 10px;
-  border:1px solid transparent;
+  color: rgba(233,236,243,0.74);
+  font-size: 0.95rem;
+  padding: 8px 10px;
+  border-radius: 999px; /* makes it feel less boxy */
 }
 .nav a:hover{
-  color:var(--fg);
-  border-color:rgba(255,255,255,0.12);
+  color: var(--fg);
+  background: rgba(255,255,255,0.06);
 }
-
 .links{
   margin-left:auto;
   display:flex;
@@ -112,87 +91,42 @@ a:hover{ text-decoration:none; }
   flex-wrap:wrap;
 }
 .links a{
-  color:rgba(231,234,240,0.65);
-  font-size:0.92rem;
-  border-bottom:1px solid transparent;
+  color: rgba(233,236,243,0.62);
+  font-size: 0.92rem;
+  border-bottom: 1px solid transparent;
 }
 .links a:hover{
-  color:var(--fg);
-  border-bottom-color:rgba(255,255,255,0.18);
+  color: var(--fg);
+  border-bottom-color: rgba(255,255,255,0.18);
 }
 
-/* ===== HOME ONLY: background slideshow ===== */
-body.home{
-  background: #000; /* fallback */
-}
-
-/* Home hero takes the full viewport (minus topbar) */
+/* ===== Home: full-bleed background slideshow ===== */
 .home-hero{
-  position:relative;
+  position: relative;
   min-height: calc(100vh - 64px);
-  display:flex;
-  align-items: center;
-  padding: 34px 0 26px 0;
-  overflow:hidden;
+  overflow: hidden;
 }
 
-/* Background layers: 3 slides using pseudo-elements */
-.home-hero::before,
-.home-hero::after{
-  content:"";
+/* slideshow layer */
+.bg-slide{
   position:absolute;
   inset:0;
   z-index:0;
-  pointer-events:none;
 }
-
-/* Base image layer (we'll animate three layers via child divs) */
-.home-hero::before{
-  /* If you later want SOLID BLACK instead of images:
-     set --homeBgMode: solid; and overlay will remain */
-  background:
-    radial-gradient(900px 550px at 20% 0%, rgba(155,123,255,0.20), transparent 60%),
-    radial-gradient(900px 550px at 80% 10%, rgba(46,233,166,0.10), transparent 55%),
-    linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.60));
-  opacity:1;
-}
-
-/* Overlay layer to ensure readability over photos */
-.home-hero::after{
-  background: linear-gradient(
-    180deg,
-    rgba(0,0,0,var(--overlayA)),
-    rgba(0,0,0,var(--overlayB))
-  );
-}
-
-/* Actual slideshow images as dedicated divs (so we can crossfade) */
-.home-hero__inner{
-  position:relative;
-  z-index:2;
-}
-
-/* Slideshow container using 3 absolutely positioned layers */
-.home-hero .bg-slide{
-  position:absolute;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
-}
-
 .bg-slide__img{
   position:absolute;
-  inset:-10%;
+  inset:-6%;
   background-position:center;
   background-size:cover;
   background-repeat:no-repeat;
-  filter: saturate(0.95) contrast(1.05);
+
+  /* cinematic look */
+  filter: saturate(0.95) contrast(1.05) brightness(0.95);
   transform: scale(1.03);
   opacity:0;
+
   animation: fade 24s infinite ease-in-out;
 }
-
-/* Assign images + stagger animations */
 .bg1{ background-image: var(--bg1); animation-delay: 0s; }
 .bg2{ background-image: var(--bg2); animation-delay: 8s; }
 .bg3{ background-image: var(--bg3); animation-delay: 16s; }
@@ -205,127 +139,135 @@ body.home{
   100% { opacity:0; }
 }
 
-/* If you later want solid background, add this class to body: class="home home--solid"
-   (or set --homeBgMode to solid and use JS later if desired) */
-body.home--solid .bg-slide__img{ display:none; }
-body.home--solid .home-hero{
-  background: var(--homeSolid);
+/* overlay to place content on top safely */
+.home-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:
+    radial-gradient(900px 560px at 18% 10%, rgba(165,139,255,0.18), transparent 62%),
+    linear-gradient(180deg,
+      rgba(0,0,0,var(--overlayTop)),
+      rgba(0,0,0,var(--overlayBottom))
+    );
 }
 
-/* ===== Home content layout ===== */
-.home-card{
+/* ===== Home content layout (less centered, more left-driven) ===== */
+.hero-layout{
+  position: relative;
+  z-index: 2;
+  padding: 40px var(--pad) 24px var(--pad);
+
+  /* Use the width of the whole screen more:
+     Anchor the block to the left with a comfortable max-width instead of centering a small card */
+  width: min(1180px, calc(100% - (var(--pad) * 2)));
+  margin-left: 0;
+}
+
+/* Artistic, less quadratic card:
+   - subtle rounding
+   - asymmetric “sheen” using ::after
+   - soft shadow */
+.hero-card{
   display:grid;
-  grid-template-columns: 380px 1fr;
+  grid-template-columns: 360px 1fr;
   gap: 26px;
-  align-items: stretch;
-  border: 1px solid rgba(255,255,255,0.16);
-  background: rgba(11,14,20,0.52);
+
+  background: rgba(8,10,16,0.52);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 18px;         /* less boxy (you asked) */
+  overflow: hidden;
+
+  box-shadow:
+    0 22px 80px rgba(0,0,0,0.55);
   backdrop-filter: blur(10px);
-  box-shadow: 0 22px 80px rgba(0,0,0,0.45);
+  position: relative;
+}
+.hero-card::after{
+  content:"";
+  position:absolute;
+  inset:-40% -30%;
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.08),
+    transparent 55%
+  );
+  transform: rotate(-10deg);
+  pointer-events:none;
 }
 
-.home-card__media{
+.hero-card__media{
   margin:0;
-  border-right: 1px solid rgba(255,255,255,0.10);
+  position:relative;
+  z-index:1;
 }
-.home-card__media img{
+.hero-card__media img{
   width:100%;
-  height: 100%;
-  min-height: 420px;
+  height:100%;
+  min-height: 430px;
   object-fit: cover;
   display:block;
 }
 
-.home-card__content{
-  padding: 22px 22px 18px 22px;
+.hero-card__content{
+  padding: 26px 26px 20px 8px; /* slight asymmetry = more “designed” */
+  position:relative;
+  z-index:1;
 }
+
 .eyebrow{
   font-family: var(--mono);
   font-size: 0.92rem;
   letter-spacing: 0.2px;
-  color: rgba(155,123,255,0.95);
+  color: rgba(165,139,255,0.95);
   margin-bottom: 10px;
 }
-.home-title{
-  margin:0 0 14px 0;
-  font-size: clamp(1.6rem, 2.5vw, 2.15rem);
+.hero-title{
+  margin: 0 0 14px 0;
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
   letter-spacing: -0.3px;
 }
-.home-text{
-  margin:0 0 16px 0;
-  color: rgba(231,234,240,0.92);
-  max-width: 70ch;
+.hero-text{
+  margin: 0 0 16px 0;
+  color: rgba(233,236,243,0.92);
+  max-width: 72ch;
 }
-.home-meta{
+.hero-meta{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
   color: var(--muted);
   font-size: 0.95rem;
 }
-.home-meta .dot{ opacity:0.7; }
-
-/* Tiles */
-.home-tiles{
-  display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--gap);
-  margin-top: 18px;
-}
-.tile{
-  border:1px solid rgba(255,255,255,0.14);
-  background: rgba(11,14,20,0.45);
-  backdrop-filter: blur(10px);
-  padding:16px;
-  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
-}
-.tile:hover{
-  transform: translateY(-3px);
-  border-color: rgba(155,123,255,0.35);
-  background: rgba(11,14,20,0.58);
-}
-.tile__kicker{
-  font-family: var(--mono);
-  font-size: 0.92rem;
-  color: rgba(155,123,255,0.92);
-}
-.tile__title{
-  margin-top:8px;
-  font-size: 1.03rem;
-  letter-spacing: 0.2px;
-}
+.hero-meta .dot{ opacity:0.7; }
 
 .footer{
-  margin-top: 22px;
-  padding: 18px 0 10px 0;
+  margin-top: 18px;
+  padding: 14px 0 10px 0;
   border-top: 1px solid rgba(255,255,255,0.12);
 }
 .footer--home{
   border-top-color: rgba(255,255,255,0.10);
 }
-.muted{ color:var(--muted); }
+.muted{ color: var(--muted); }
 
 /* ===== Responsive ===== */
-@media (max-width: 1050px){
-  .home-card{ grid-template-columns: 320px 1fr; }
-}
 @media (max-width: 980px){
-  .nav{ display:none; } /* clean mobile; we can add hamburger later */
-  .home-card{
+  .nav{ display:none; } /* keep clean; can add hamburger later */
+  .hero-layout{
+    width: calc(100% - (var(--pad) * 2));
+  }
+  .hero-card{
     grid-template-columns: 1fr;
+    border-radius: 16px;
   }
-  .home-card__media{
-    border-right:none;
-    border-bottom: 1px solid rgba(255,255,255,0.10);
+  .hero-card__content{
+    padding: 20px 18px 18px 18px;
   }
-  .home-card__media img{
+  .hero-card__media img{
     min-height: 360px;
-  }
-  .home-tiles{
-    grid-template-columns: 1fr 1fr;
   }
 }
 @media (max-width: 560px){
-  .home-tiles{ grid-template-columns: 1fr; }
-  .home-hero{ padding-top: 22px; }
+  .hero-layout{ padding-top: 28px; }
 }
