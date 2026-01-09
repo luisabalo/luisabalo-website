@@ -10,7 +10,7 @@
 
 <body class="home">
   <header class="topbar">
-    <div class="wrap topbar__inner">
+    <div class="topbar__inner">
       <a class="brand" href="index.html">Luis Abalo</a>
 
       <nav class="nav" aria-label="Primary">
@@ -29,62 +29,43 @@
     </div>
   </header>
 
-  <!-- Home hero with background slideshow -->
   <main class="home-hero" role="main">
+    <!-- Background slideshow (crossfade) -->
     <div class="bg-slide" aria-hidden="true">
       <div class="bg-slide__img bg1"></div>
       <div class="bg-slide__img bg2"></div>
       <div class="bg-slide__img bg3"></div>
     </div>
 
-    <div class="wrap home-hero__inner">
-      <section class="home-card" aria-label="About">
-        <figure class="home-card__media" aria-label="Portrait">
+    <section class="hero-layout" aria-label="Home">
+      <div class="hero-card">
+        <figure class="hero-card__media" aria-label="Portrait">
           <img src="assets/headshot.jpg" alt="Luis Abalo portrait" />
         </figure>
 
-        <div class="home-card__content">
+        <div class="hero-card__content">
           <div class="eyebrow">Physicist–Engineer</div>
-          <h1 class="home-title">X-ray optics • compact objects • scientific software</h1>
+          <h1 class="hero-title">X-ray optics • compact objects • scientific software</h1>
 
-          <p class="home-text">
+          <p class="hero-text">
             I work at the interface of space hardware and astrophysics: from X-ray optics design and
             manufacturing constraints for next-generation telescopes to the scientific exploitation of current
             missions, with a focus on accreting compact objects (HMXBs, ULXs). I also build research software
             in a professional, maintainable way (architecture, testing, and usable interfaces).
           </p>
 
-          <div class="home-meta">
+          <div class="hero-meta">
             <span>Germany</span>
             <span class="dot">•</span>
             <span>Berlin / Munich</span>
           </div>
         </div>
-      </section>
-
-      <section class="home-tiles" aria-label="Navigation">
-        <a class="tile" href="space-industry.html">
-          <div class="tile__kicker">01</div>
-          <div class="tile__title">Space Industry</div>
-        </a>
-        <a class="tile" href="research.html">
-          <div class="tile__kicker">02</div>
-          <div class="tile__title">Research</div>
-        </a>
-        <a class="tile" href="outreach.html">
-          <div class="tile__kicker">03</div>
-          <div class="tile__title">Outreach</div>
-        </a>
-        <a class="tile" href="contact.html">
-          <div class="tile__kicker">04</div>
-          <div class="tile__title">Contact</div>
-        </a>
-      </section>
+      </div>
 
       <footer class="footer footer--home">
         <div class="muted">© <span id="year"></span> Luis Abalo</div>
       </footer>
-    </div>
+    </section>
   </main>
 
   <script>
