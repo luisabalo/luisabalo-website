@@ -1,24 +1,313 @@
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    h1 {
-      color: #333;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luis Abalo</title>
+  <meta name="description" content="Luis Abalo — Physicist–Engineer | X-ray optics • X-ray astronomy • scientific software" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-  <h1>We are working on this website! / Estamos trabajando en esta página web ahora! 👋</h1>
+  <!-- Sticky top navigation -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="#home" aria-label="Go to top">Luis Abalo</a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#industry">Space Industry</a>
+        <a href="#research">Research</a>
+        <a href="#output">Output</a>
+        <a href="#talks">Talks</a>
+        <a href="#outreach">Collaboration & Outreach</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="icons" aria-label="External links">
+        <!-- Replace # with your links -->
+        <a href="#" aria-label="ADS">ADS</a>
+        <a href="#" aria-label="GitHub">GitHub</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__text">
+          <h1 class="hero__title">Physicist–Engineer</h1>
+          <p class="hero__subtitle">
+            X-ray optics & instrumentation • Compact objects • Scientific software
+          </p>
+
+          <p class="hero__bio">
+            I work at the interface of space hardware and astrophysics: from optical system design and
+            manufacturing constraints for next-generation X-ray telescopes to the scientific exploitation of
+            current missions, with a focus on accreting compact objects. I also develop professional research
+            software (e.g., BLiSS for blind spectral line searches).
+          </p>
+
+          <div class="hero__cta">
+            <!-- Replace with your actual URLs -->
+            <a class="btn btn--primary" href="assets/CV_Luis_Abalo.pdf">CV (PDF)</a>
+            <a class="btn" href="#research">Research</a>
+            <a class="btn" href="#contact">Contact</a>
+          </div>
+
+          <div class="meta">
+            <span>Berlin / Munich (Germany)</span>
+            <span>·</span>
+            <a href="mailto:abalo@physics.leidenuniv.nl">abalo@physics.leidenuniv.nl</a>
+          </div>
+        </div>
+
+        <figure class="hero__image">
+          <!-- Large studio headshot -->
+          <img src="assets/headshot.jpg" alt="Portrait of Luis Abalo" />
+          <figcaption class="sr-only">Portrait</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>About</h2>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <p>
+              PhD Candidate (Leiden University / ESA) and Scientist–Engineer (cosine measurement systems)
+              with experience across synchrotron facilities (BESSY II/PTB, ALBA), scientific pipelines
+              at production scale, and mission-oriented optical design studies enabling new X-ray polarimetry
+              capabilities.
+            </p>
+
+            <p class="muted">
+              Interests: X-ray optics (SPO), compact objects (HMXBs, ULXs), timing & spectral analysis,
+              and robust scientific software engineering.
+            </p>
+          </div>
+
+          <div class="about__side">
+            <!-- Optional cover/drone image (you said you have drone pictures for covers) -->
+            <img src="assets/cover_drone.jpg" alt="Aerial cover image" />
+            <p class="caption muted">Aerial cover image (replace with your drone photo).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPACE INDUSTRY -->
+    <section id="industry" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Space Industry</h2>
+          <p class="muted">NewAthena / SPO development, beamline operations, and scalable pipelines.</p>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <ul class="bullets">
+              <li>Hands-on SPO mirror module assembly and testing in cleanrooms at BESSY II and ALBA, with real-time on-site problem solving.</li>
+              <li>Automated data-processing pipelines to streamline beamline workflows and support large-scale ESA L-class mission production.</li>
+              <li>System studies: novel optical design in an alternative geometry, enabling polarimetry beyond current energy limits and defining science cases and performance trade-offs.</li>
+            </ul>
+          </div>
+
+          <div>
+            <!-- Lab photo (replace with your beamline/lab image) -->
+            <img src="assets/lab_beamline.jpg" alt="Luis working in the lab / beamline environment" />
+            <p class="caption muted">Replace with a beamline / lab photo (BESSY II or ALBA).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH (3 pillars) -->
+    <section id="research" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Research</h2>
+          <p class="muted">Three pillars: optics design, compact objects, and software.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <img src="assets/research_optics.png" alt="Optics design diagram / plot" />
+            <div class="card__body">
+              <h3>Optical Design & Polarimetry</h3>
+              <p class="muted">
+                System-level optical concepts and trade studies; alternative geometries to extend polarimetric
+                reach to new energy ranges.
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="assets/research_xray.png" alt="X-ray spectrum or light curve plot" />
+            <div class="card__body">
+              <h3>Observational X-ray Astronomy</h3>
+              <p class="muted">
+                Timing and spectral studies of accreting compact objects (HMXBs, ULXs) using current missions
+                and multi-observatory datasets.
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="assets/research_software.png" alt="BLiSS GUI or software screenshot" />
+            <div class="card__body">
+              <h3>Scientific Software</h3>
+              <p class="muted">
+                Robust, reusable research tools (pipelines, libraries, GUI). Emphasis on clean architecture,
+                testing, and maintainability.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Optional highlight block for BLiSS -->
+        <div class="highlight">
+          <div class="highlight__text">
+            <h3>BLiSS</h3>
+            <p class="muted">
+              Python library for blind spectral line searches in X-ray data. Professionalised implementation:
+              object-oriented architecture, testing, and GUI development.
+            </p>
+            <div class="chips">
+              <span class="chip">OOP architecture</span>
+              <span class="chip">Testing</span>
+              <span class="chip">GUI</span>
+            </div>
+          </div>
+          <div class="highlight__media">
+            <img src="assets/bliss_gui.png" alt="BLiSS GUI screenshot" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCIENTIFIC OUTPUT -->
+    <section id="output" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Scientific Output & Proposals</h2>
+        </div>
+
+        <div class="two-col">
+          <div class="facts">
+            <p><strong>Publications:</strong> 13 total (1 first-author peer-reviewed published in 2024; additional manuscripts in preparation; co-author papers and SPIE proceedings).</p>
+            <p>
+              <strong>ADS:</strong>
+              <a href="https://shorturl.at/4J9Co" target="_blank" rel="noopener noreferrer">Publication list</a>
+            </p>
+          </div>
+
+          <div class="facts">
+            <p><strong>Observing Proposals:</strong> XRISM proposal accepted (A01; Co-PI), with coordinated XMM-Newton and NuSTAR follow-up.</p>
+            <p class="muted">Add any additional proposal lines here (submitted, etc.).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TALKS -->
+    <section id="talks" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Invited Talks & Conferences</h2>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <p><strong>Invited:</strong> Seminar at Center for Astrophysics | Harvard & Smithsonian; specialist workshop at ESAC (2024).</p>
+            <p><strong>Contributed:</strong> 5 talks and 7 posters at major conferences (EAS, X-ray Universe, AG Meeting, Neutron Stars, 2022–2025).</p>
+          </div>
+          <div>
+            <!-- Optional talk photo -->
+            <img src="assets/talk_photo.jpg" alt="Luis giving a talk" />
+            <p class="caption muted">Replace with a photo of you giving a talk.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLABORATION & OUTREACH -->
+    <section id="outreach" class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Collaboration & Outreach</h2>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <ul class="bullets">
+              <li><strong>X-Wind Collaboration:</strong> bridging observers and theorists in HMXB and massive-star wind studies.</li>
+              <li><strong>NewAthena Science Community (WG4):</strong> contributed to Red Book WG4 white papers on HMXBs and ULXs.</li>
+              <li><strong>NuSTAR ULX Collaboration:</strong> international collaboration involving researchers across multiple countries.</li>
+            </ul>
+          </div>
+
+          <div class="outreach__media">
+            <div class="media-row">
+              <img src="assets/podcast_logo.png" alt="El Gato Esférico podcast logo" />
+              <div>
+                <p><strong>El Gato Esférico</strong></p>
+                <p class="muted">Podcast available on major platforms.</p>
+              </div>
+            </div>
+
+            <img src="assets/outreach_kids.jpg" alt="Luis doing outreach activity with children" />
+            <p class="caption muted">
+              Initiated annual science days across educational centres, supervised high-school physics projects,
+              and contributed to Marie Skłodowska–Curie Actions events.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section--last">
+      <div class="container">
+        <div class="section__header">
+          <h2>Contact</h2>
+        </div>
+
+        <div class="contact">
+          <div class="contact__card">
+            <p><strong>Email:</strong> <a href="mailto:abalo@physics.leidenuniv.nl">abalo@physics.leidenuniv.nl</a></p>
+            <p><strong>Website:</strong> <a href="https://luisabalo.com" target="_blank" rel="noopener noreferrer">luisabalo.com</a></p>
+            <p class="muted">Based in Germany · Available for collaborations in X-ray instrumentation, data analysis, and scientific software.</p>
+            <div class="contact__buttons">
+              <a class="btn btn--primary" href="assets/CV_Luis_Abalo.pdf">Download CV</a>
+              <a class="btn" href="#home">Back to top</a>
+            </div>
+          </div>
+
+          <div class="contact__note muted">
+            <p>
+              Tip: If you want a simple contact form on GitHub Pages without a backend, we can use a service like Formspree later.
+              For now, mailto is clean and reliable.
+            </p>
+          </div>
+        </div>
+
+        <footer class="footer muted">
+          <span>© <span id="year"></span> Luis Abalo</span>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
