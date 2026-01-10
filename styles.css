@@ -305,14 +305,20 @@ a:hover{ text-decoration:none; }
   }
 }
 
-/* Link styling inside hero text */
-.hero-text a {
-  color: rgba(178,155,255,0.95);
-  text-decoration: none;
-  font-weight: 500;
-  border-bottom: 1px solid rgba(178,155,255,0.35);
+/* Links inside hero text: underline only, same color */
+.hero-glass a{
+  color: inherit;             
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
-.hero-text a:hover {
-  border-bottom-color: rgba(178,155,255,0.95);
+.hero-glass a:hover{
+  text-decoration-thickness: 2px; 
+}
+
+/* Highlighted keywords */
+.keyword{
+  color: rgba(178,155,255,0.95);
+  font-weight: 500;   
 }
