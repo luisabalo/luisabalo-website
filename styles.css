@@ -305,9 +305,9 @@ a:hover{ text-decoration:none; }
   }
 }
 
-
+/* Link styling inside hero text */
 .hero-text a {
-  color: rgba(178,155,255,0.95); /* same accent family */
+  color: rgba(178,155,255,0.95);
   text-decoration: none;
   font-weight: 500;
   border-bottom: 1px solid rgba(178,155,255,0.35);
