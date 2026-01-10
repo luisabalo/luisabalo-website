@@ -299,7 +299,20 @@ a:hover{ text-decoration:none; }
   .hero-portrait{
     width: 220px;
   }
+  
   .hero-portrait img{
     height: 280px;
   }
+}
+
+
+.hero-text a {
+  color: rgba(178,155,255,0.95); /* same accent family */
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(178,155,255,0.35);
+}
+
+.hero-text a:hover {
+  border-bottom-color: rgba(178,155,255,0.95);
 }
