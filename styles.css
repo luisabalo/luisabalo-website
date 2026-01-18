@@ -28,7 +28,7 @@ body{
   line-height:1.6;
 }
 
-/* Global links: same font/color, but underlined */
+/* Global links: same font/color, underlined */
 a{
   color: inherit;
   font: inherit;
@@ -57,14 +57,12 @@ a:hover{
   gap:18px;
   padding: 14px var(--pad);
   width: 100%;
-  position: relative; /* for the absolute badge */
 }
-
 .brand{
   font-weight: 780;
   letter-spacing: 0.2px;
   position:relative;
-  text-decoration: none; /* no underline for brand */
+  text-decoration: none;
 }
 .brand::after{
   content:"";
@@ -76,7 +74,6 @@ a:hover{
   background: var(--accent);
   opacity: 0.95;
 }
-
 .nav{
   display:flex;
   gap:14px;
@@ -88,7 +85,7 @@ a:hover{
   font-size: 0.95rem;
   padding: 8px 10px;
   border-radius: 999px;
-  text-decoration: none; /* keep pills clean */
+  text-decoration: none;
 }
 .nav a:hover{
   color: var(--fg);
@@ -100,51 +97,22 @@ a:hover{
   background: rgba(255,255,255,0.10);
   text-decoration: none;
 }
-
 .links{
   margin-left:auto;
   display:flex;
   gap:12px;
   flex-wrap:wrap;
-  padding-right: 210px; /* reserve space so badge doesn't overlap */
 }
 .links a{
   color: rgba(238,241,247,0.64);
   font-size: 0.92rem;
   border-bottom: 1px solid transparent;
-  text-decoration: none; /* external links block uses its own hover underline */
+  text-decoration: none;
 }
 .links a:hover{
   color: var(--fg);
   border-bottom-color: rgba(255,255,255,0.18);
   text-decoration: none;
-}
-
-/* Top-right red badge */
-.site-note{
-  position: absolute;
-  top: 10px;
-  right: var(--pad);
-
-  background: rgba(225, 29, 72, 0.95); /* red */
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.28);
-
-  padding: 8px 10px;
-  border-radius: 10px; /* square-ish but neat */
-  font-size: 0.78rem;
-  line-height: 1.25;
-  letter-spacing: 0.02em;
-
-  box-shadow: 0 12px 34px rgba(0,0,0,0.45);
-  max-width: 190px;
-}
-.site-note strong{
-  display:inline-block;
-  text-transform: uppercase;
-  font-size: 0.70rem;
-  letter-spacing: 0.10em;
-  margin-bottom: 2px;
 }
 
 /* ===== Home: background slideshow ===== */
@@ -203,9 +171,26 @@ a:hover{
   z-index:2;
   padding: 62px var(--pad) 26px var(--pad);
 
-  /* SHIFT RIGHT: use a left margin */
+  /* SHIFT MORE RIGHT */
   width: min(1180px, calc(100% - (var(--pad) * 2)));
-  margin-left: clamp(18px, 6vw, 90px);
+  margin-left: clamp(40px, 10vw, 170px);
+}
+
+/* Red centered note above hero content */
+.construction-banner{
+  width: min(760px, 92vw);
+  margin: 0 auto 22px auto;
+
+  background: rgba(225, 29, 72, 0.95);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.22);
+  box-shadow: 0 14px 44px rgba(0,0,0,0.45);
+
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  text-align: center;
 }
 
 .hero-shell{
@@ -234,6 +219,7 @@ a:hover{
 .hero-copy{
   padding-top: 4px;
   max-width: 82ch;
+  position: relative; /* for the bottom-right photo note */
 }
 .eyebrow{
   font-family: var(--mono);
@@ -251,26 +237,6 @@ a:hover{
   margin: 10px 0 16px 0;
   color: rgba(238,241,247,0.78);
   font-size: 1.05rem;
-}
-
-/* glass block */
-.hero-glass{
-  background: rgba(10,12,18,0.40);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 18px;
-  padding: 16px 16px 14px 16px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 18px 70px rgba(0,0,0,0.40);
-  position: relative;
-  overflow:hidden;
-}
-.hero-glass::after{
-  content:"";
-  position:absolute;
-  inset:-45% -25%;
-  background: linear-gradient(135deg, rgba(255,255,255,0.10), transparent 58%);
-  transform: rotate(-10deg);
-  pointer-events:none;
 }
 
 .hero-text{
@@ -291,6 +257,14 @@ a:hover{
   margin-top: 12px;
 }
 .hero-meta .dot{ opacity:0.7; }
+
+/* Friendly photo note: bottom-right of the about text area */
+.photo-note{
+  margin-top: 16px;
+  text-align: right;
+  font-size: 0.86rem;
+  color: rgba(238,241,247,0.62);
+}
 
 /* footer */
 .footer{
@@ -337,22 +311,17 @@ a:hover{
 @media (max-width: 980px){
   .nav{ display:none; }
 
-  .links{
-    padding-right: 0; /* no reserved space on mobile */
-  }
-
-  .site-note{
-    top: 8px;
-    right: 12px;
-    font-size: 0.72rem;
-    max-width: 170px;
-  }
-
   .hero-layout{
     width: calc(100% - (var(--pad) * 2));
     margin-left: 0;
     padding-top: 40px;
   }
+
+  .construction-banner{
+    margin-bottom: 18px;
+    font-size: 0.92rem;
+  }
+
   .hero-shell{
     grid-template-columns: 1fr;
     gap: 18px;
@@ -362,6 +331,10 @@ a:hover{
   }
   .hero-portrait img{
     height: 280px;
+  }
+
+  .photo-note{
+    text-align: left;
   }
 }
 
