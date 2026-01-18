@@ -27,8 +27,19 @@ body{
   background:#05070c;
   line-height:1.6;
 }
-a{ color:inherit; text-decoration:none; }
-a:hover{ text-decoration:none; }
+
+/* Global links: same font/color, but underlined */
+a{
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+a:hover{
+  text-decoration-thickness: 2px;
+}
+
 .muted{ color: var(--muted); }
 
 /* ===== Topbar ===== */
@@ -46,11 +57,14 @@ a:hover{ text-decoration:none; }
   gap:18px;
   padding: 14px var(--pad);
   width: 100%;
+  position: relative; /* for the absolute badge */
 }
+
 .brand{
   font-weight: 780;
   letter-spacing: 0.2px;
   position:relative;
+  text-decoration: none; /* no underline for brand */
 }
 .brand::after{
   content:"";
@@ -62,6 +76,7 @@ a:hover{ text-decoration:none; }
   background: var(--accent);
   opacity: 0.95;
 }
+
 .nav{
   display:flex;
   gap:14px;
@@ -73,29 +88,63 @@ a:hover{ text-decoration:none; }
   font-size: 0.95rem;
   padding: 8px 10px;
   border-radius: 999px;
+  text-decoration: none; /* keep pills clean */
 }
 .nav a:hover{
   color: var(--fg);
   background: rgba(255,255,255,0.07);
+  text-decoration: none;
 }
 .nav a.active{
   color: var(--fg);
   background: rgba(255,255,255,0.10);
+  text-decoration: none;
 }
+
 .links{
   margin-left:auto;
   display:flex;
   gap:12px;
   flex-wrap:wrap;
+  padding-right: 210px; /* reserve space so badge doesn't overlap */
 }
 .links a{
   color: rgba(238,241,247,0.64);
   font-size: 0.92rem;
   border-bottom: 1px solid transparent;
+  text-decoration: none; /* external links block uses its own hover underline */
 }
 .links a:hover{
   color: var(--fg);
   border-bottom-color: rgba(255,255,255,0.18);
+  text-decoration: none;
+}
+
+/* Top-right red badge */
+.site-note{
+  position: absolute;
+  top: 10px;
+  right: var(--pad);
+
+  background: rgba(225, 29, 72, 0.95); /* red */
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.28);
+
+  padding: 8px 10px;
+  border-radius: 10px; /* square-ish but neat */
+  font-size: 0.78rem;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+
+  box-shadow: 0 12px 34px rgba(0,0,0,0.45);
+  max-width: 190px;
+}
+.site-note strong{
+  display:inline-block;
+  text-transform: uppercase;
+  font-size: 0.70rem;
+  letter-spacing: 0.10em;
+  margin-bottom: 2px;
 }
 
 /* ===== Home: background slideshow ===== */
@@ -287,6 +336,18 @@ a:hover{ text-decoration:none; }
 /* Responsive */
 @media (max-width: 980px){
   .nav{ display:none; }
+
+  .links{
+    padding-right: 0; /* no reserved space on mobile */
+  }
+
+  .site-note{
+    top: 8px;
+    right: 12px;
+    font-size: 0.72rem;
+    max-width: 170px;
+  }
+
   .hero-layout{
     width: calc(100% - (var(--pad) * 2));
     margin-left: 0;
@@ -299,26 +360,13 @@ a:hover{ text-decoration:none; }
   .hero-portrait{
     width: 220px;
   }
-  
   .hero-portrait img{
     height: 280px;
   }
 }
 
-/* Links inside hero text: underline only, same color */
-.hero-glass a{
-  color: inherit;             
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-}
-
-.hero-glass a:hover{
-  text-decoration-thickness: 2px; 
-}
-
 /* Highlighted keywords */
 .keyword{
   color: rgba(178,155,255,0.95);
-  font-weight: 500;   
+  font-weight: 500;
 }
